@@ -50,10 +50,11 @@ public class Actions {
     }
 
     public static class Action {
-        public final String ReadableName;
-        public final String Type;
-        public final String Value;
-        public final boolean Acknowledged;
+        public String ReadableName;
+        public String Type;
+        public Object Value;
+        public int Id;
+        public boolean Acknowledged;
 
         public Action(String ReadableName, String Type, String Value, boolean Acknowledged) {
             this.ReadableName = ReadableName;
