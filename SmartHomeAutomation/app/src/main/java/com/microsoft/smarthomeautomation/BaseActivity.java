@@ -9,9 +9,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.microsoft.smarthomeautomation.DTO.Actions;
 import com.microsoft.smarthomeautomation.Fragments.ActionsFragment;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements ActionsFragment.OnListFragmentInteractionListener {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -20,7 +21,7 @@ public class BaseActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    this.replaceFragment(new ActionsFragment());
+                    replaceFragment(new ActionsFragment());
                     return true;
                 case R.id.navigation_dashboard:
 //                    mTextMessage.setText(R.string.title_dashboard);
@@ -32,14 +33,6 @@ public class BaseActivity extends AppCompatActivity {
             return false;
         }
 
-        private void replaceFragment(Fragment fragment) {
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
-
-        }
-
     };
 
     @Override
@@ -48,6 +41,19 @@ public class BaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_base);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        replaceFragment(new ActionsFragment());
+    }
+
+    @Override
+    public void onListFragmentInteraction(Actions.Action item) {
+
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
     }
 
 }

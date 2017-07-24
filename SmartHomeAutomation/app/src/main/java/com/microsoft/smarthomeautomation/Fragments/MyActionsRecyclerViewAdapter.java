@@ -37,7 +37,7 @@ public class MyActionsRecyclerViewAdapter extends RecyclerView.Adapter<MyActions
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).ReadableName);
-        holder.mContentView.setText(mValues.get(position).Value);
+        holder.mContentView.setText(mValues.get(position).Type);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
