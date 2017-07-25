@@ -7,11 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-    </Grid>
+    </Grid>-->
+    <StackPanel Background="HotPink">
+        <Button Content="Get Weather" Click="Button_Click" />
+        <TextBlock Name="ResultTextBlock" />
+        <Image Name="ResultImage" Width="200" Height="200" />
+    </StackPanel>
 </Page>

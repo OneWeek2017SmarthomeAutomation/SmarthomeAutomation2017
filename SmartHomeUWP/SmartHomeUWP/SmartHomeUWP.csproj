@@ -18,6 +18,10 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>SmartHomeUWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>C:\Users\erhunt\Source\Repos\SmarthomeAutomation2017\SmartHomeUWP\AppPackage\</AppxPackageDir>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -95,9 +99,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LocationManager.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OpenWeatherMapProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +113,24 @@
     <None Include="SmartHomeUWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Weather\01d.png" />
+    <Content Include="Assets\Weather\01n.png" />
+    <Content Include="Assets\Weather\02d.png" />
+    <Content Include="Assets\Weather\02n.png" />
+    <Content Include="Assets\Weather\03d.png" />
+    <Content Include="Assets\Weather\03n.png" />
+    <Content Include="Assets\Weather\04d.png" />
+    <Content Include="Assets\Weather\04n.png" />
+    <Content Include="Assets\Weather\09d.png" />
+    <Content Include="Assets\Weather\09n.png" />
+    <Content Include="Assets\Weather\10d.png" />
+    <Content Include="Assets\Weather\10n.png" />
+    <Content Include="Assets\Weather\11d.png" />
+    <Content Include="Assets\Weather\11n.png" />
+    <Content Include="Assets\Weather\13d.png" />
+    <Content Include="Assets\Weather\13n.png" />
+    <Content Include="Assets\Weather\50d.png" />
+    <Content Include="Assets\Weather\50n.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -130,7 +154,14 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>5.2.3</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.3</Version>
+    </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

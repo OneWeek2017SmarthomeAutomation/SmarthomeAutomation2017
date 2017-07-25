@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,6 +26,20 @@ namespace SmartHomeUWP
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var position = await LocationManager.GetPosition();
+            
+            RootObject myWeather =
+                await OpenWeatherMapProxy.GetWeather(
+                    position.Coordinate.Latitude,
+                    position.Coordinate.Longitude);
+
+            string icon = String.Format("ms-appx:///Assets/Weather/{0}.png", myWeather.weather[0].icon);
+            ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
+            ResultTextBlock.Text = myWeather.name + " - " + ((int)myWeather.main.temp).ToString() + " - " + myWeather.weather[0].description;
         }
     }
 }
