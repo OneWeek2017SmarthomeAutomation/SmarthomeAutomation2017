@@ -1,11 +1,12 @@
 package com.microsoft.smarthomeautomation.Services;
 
-import android.app.Notification;
+import android.support.v4.app.NotificationCompat;
+import android.content.Context;
 
 public interface NotificationService {
 
-    String DisplayNotification(String title, String subtitle);
+    void DisplayNotification(String title, String subtitle);
 
-    String DisplayNotification(String title, String subtitle, String primaryString, Notification.Action primaryCommand, String alternateString, Notification.Action alternateCommand);
+    void DisplayNotification(String title, String subtitle, NotificationCompat.Action primaryCommand, NotificationCompat.Action alternateCommand);
 
 }
