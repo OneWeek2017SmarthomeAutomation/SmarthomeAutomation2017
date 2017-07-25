@@ -8,11 +8,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.microsoft.smarthomeautomation.DTO.Actions;
 import com.microsoft.smarthomeautomation.Fragments.ActionsFragment;
+import com.microsoft.smarthomeautomation.Fragments.ProgramListFragment;
+import com.microsoft.smarthomeautomation.Services.NotificationServiceImpl;
+
 
 public class BaseActivity extends AppCompatActivity implements ActionsFragment.OnListFragmentInteractionListener {
+
+    NotificationServiceImpl notificationService;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -24,10 +30,10 @@ public class BaseActivity extends AppCompatActivity implements ActionsFragment.O
                     replaceFragment(new ActionsFragment());
                     return true;
                 case R.id.navigation_dashboard:
-//                    mTextMessage.setText(R.string.title_dashboard);
+                    replaceFragment(new ProgramListFragment());
                     return true;
                 case R.id.navigation_notifications:
-//                    mTextMessage.setText(R.string.title_notifications);
+                    Toast.makeText(getBaseContext(), "Coming soon", Toast.LENGTH_SHORT);
                     return true;
             }
             return false;

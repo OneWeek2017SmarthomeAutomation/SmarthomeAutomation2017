@@ -1,66 +1,40 @@
 package com.microsoft.smarthomeautomation.DTO;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.joda.time.DateTime;
 
-/**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- * <p>
- * TODO: Replace all uses of this class before publishing your app.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class Actions {
 
-    /**
-     * An array of sample (dummy) items.
-     */
     public static final List<Action> ACTIONS = new ArrayList<>();
 
-    /**
-     * A map of sample (dummy) items, by ID.
-     */
-    public static final Map<String, Action> ITEM_MAP = new HashMap<>();
-
-    private static final int COUNT = 25;
-
     static {
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
-        }
+        addItem(new Action("Turn lights up", "WakeUp", "", DateTime.now().plusHours(12), true, true));
+        addItem(new Action("Make Home Comfortable", "WakeUp", "", DateTime.now().plusHours(12).plusMinutes(30), true, true));
+        addItem(new Action("Ordering Commute", "Commute", "", DateTime.now().plusHours(13), false, false));
     }
 
     private static void addItem(Action item) {
         ACTIONS.add(item);
-        ITEM_MAP.put(item.Type, item);
-    }
-
-    private static Action createDummyItem(int position) {
-        return new Action(String.valueOf(position), "Item " + position, makeDetails(position), false);
-    }
-
-    private static String makeDetails(int position) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
-        for (int i = 0; i < position; i++) {
-            builder.append("\nMore details information here.");
-        }
-        return builder.toString();
     }
 
     public static class Action {
+        public DateTime StartTime;
         public String ReadableName;
         public String Type;
         public Object Value;
         public int Id;
         public boolean Acknowledged;
+        public boolean Enabled;
 
-        public Action(String ReadableName, String Type, String Value, boolean Acknowledged) {
+        public Action(String ReadableName, String Type, String Value, DateTime startTime, boolean Enabled, boolean Acknowledged) {
             this.ReadableName = ReadableName;
             this.Type = Type;
             this.Value = Value;
             this.Acknowledged = Acknowledged;
+            this.Enabled = Enabled;
+            this.StartTime = startTime;
         }
     }
 }
