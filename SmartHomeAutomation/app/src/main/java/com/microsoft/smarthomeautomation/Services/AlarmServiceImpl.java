@@ -17,4 +17,9 @@ public class AlarmServiceImpl implements AlarmService {
     public void cancelAlarm(int tag) {
 
     }
+
+    @Override
+    public void cancelAlarms() {
+
+    }
 }

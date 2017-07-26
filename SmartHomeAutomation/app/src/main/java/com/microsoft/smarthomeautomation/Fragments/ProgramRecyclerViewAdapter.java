@@ -1,16 +1,14 @@
 package com.microsoft.smarthomeautomation.Fragments;
 
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import com.microsoft.smarthomeautomation.DTO.Actions;
 import com.microsoft.smarthomeautomation.DTO.Programs.Program;
 import com.microsoft.smarthomeautomation.Fragments.ProgramListFragment.OnListFragmentInteractionListener;
 import com.microsoft.smarthomeautomation.R;
@@ -55,7 +53,16 @@ public class ProgramRecyclerViewAdapter extends RecyclerView.Adapter<ProgramRecy
     }
 
     private int getResourceForIndex(int position) {
-        return 0;
+        switch (position) {
+            case 0:
+                return R.drawable.ic_wb_sunny_black_24dp;
+            case 1:
+                return R.drawable.ic_cloud_black_24dp;
+            case 2:
+                return R.drawable.ic_lightbulb_outline_black_24dp;
+
+        }
+        return R.drawable.ic_directions_car_black_24dp;
     }
 
     @Override
@@ -66,14 +73,14 @@ public class ProgramRecyclerViewAdapter extends RecyclerView.Adapter<ProgramRecy
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final ImageView imageView;
         public final TextView contentView;
-        public final Switch enabledSwitch;
+        public final SwitchCompat enabledSwitch;
         public Program item;
 
         public ViewHolder(View view) {
             super(view);
             imageView = (ImageView) view.findViewById(R.id.icon);
             contentView = (TextView) view.findViewById(R.id.content);
-            enabledSwitch = (Switch) view.findViewById(R.id.enabled_switch);
+            enabledSwitch = (SwitchCompat) view.findViewById(R.id.enabled_switch);
         }
     }
 }

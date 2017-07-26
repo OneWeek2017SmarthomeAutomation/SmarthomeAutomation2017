@@ -3,13 +3,13 @@ package com.microsoft.smarthomeautomation.Fragments;
 import android.animation.ObjectAnimator;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.microsoft.smarthomeautomation.DTO.Actions.Action;
@@ -74,7 +74,15 @@ public class MyActionsRecyclerViewAdapter extends RecyclerView.Adapter<MyActions
     }
 
     private int getResourceForType(String type) {
-        return 0;
+        switch(type) {
+            case "WakeUp":
+                return R.drawable.ic_wb_sunny_black_24dp;
+            case "Commute":
+                return R.drawable.ic_directions_car_black_24dp;
+            case "Home":
+                return R.drawable.ic_home_black_24dp;
+        }
+        return R.drawable.ic_home_black_24dp;
     }
 
     @Override
@@ -86,7 +94,7 @@ public class MyActionsRecyclerViewAdapter extends RecyclerView.Adapter<MyActions
         public final View mView;
         public final ImageView icon;
         public final TextView title;
-        public final Switch enabledSwitch;
+        public final SwitchCompat enabledSwitch;
         public final FrameLayout containerLayout;
         public Action mItem;
 
@@ -95,7 +103,7 @@ public class MyActionsRecyclerViewAdapter extends RecyclerView.Adapter<MyActions
             mView = view;
             icon = (ImageView) view.findViewById(R.id.icon);
             title = (TextView) view.findViewById(R.id.content);
-            enabledSwitch = (Switch) view.findViewById(R.id.enabled_switch);
+            enabledSwitch = (SwitchCompat) view.findViewById(R.id.enabled_switch);
             containerLayout = (FrameLayout) view.findViewById(R.id.container_layout);
         }
     }

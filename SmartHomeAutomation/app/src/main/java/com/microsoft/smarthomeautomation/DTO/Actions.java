@@ -11,7 +11,7 @@ public class Actions {
 
     static {
         addItem(new Action("Turn lights up", "WakeUp", "", DateTime.now().plusHours(12), true, true));
-        addItem(new Action("Make Home Comfortable", "WakeUp", "", DateTime.now().plusHours(12).plusMinutes(30), true, true));
+        addItem(new Action("Make Home Comfortable", "Home", "", DateTime.now().plusHours(12).plusMinutes(30), true, true));
         addItem(new Action("Ordering Commute", "Commute", "", DateTime.now().plusHours(13), false, false));
     }
 
