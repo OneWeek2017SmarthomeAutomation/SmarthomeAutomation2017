@@ -21,14 +21,24 @@
                 <Button Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
                     Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click"/>
                 <StackPanel Orientation="Horizontal">
-                    <Button Name="Screen1Btn" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;"
-                       Width="50" Height="50" Background="Transparent"/>
-                    <TextBlock Text="Button1" FontSize="18" VerticalAlignment="Center" />
+                    <Button Name="Screen1Btn" FontFamily="Segoe MDL2 Assets" Content="&#xEC4A;"
+                       Width="50" Height="50" Background="Transparent" Click="Button1_Click"/>
+                    <TextBlock Text="Dashboard" FontSize="18" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button Name="Screen2Btn" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;"
-                       Width="50" Height="50" Background="Transparent"/>
-                    <TextBlock Text="Button2" FontSize="18" VerticalAlignment="Center" />
+                    <Button Name="Screen2Btn" FontFamily="Segoe MDL2 Assets" Content="&#xF0E2;"
+                       Width="50" Height="50" Background="Transparent" Click="Button2_Click"/>
+                    <TextBlock Text="Programs" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="Screen3Btn" FontFamily="Segoe MDL2 Assets" Content="&#xECC8;"
+                       Width="50" Height="50" Background="Transparent" Click="Button3_Click"/>
+                    <TextBlock Text="Setup" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="Screen4Btn" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;"
+                       Width="50" Height="50" Background="Transparent" Click="Button3_Click"/>
+                    <TextBlock Text="Your Home" FontSize="18" VerticalAlignment="Center" />
                 </StackPanel>
             </StackPanel>
         </SplitView.Pane>

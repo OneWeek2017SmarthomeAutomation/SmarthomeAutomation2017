@@ -31,7 +31,7 @@ namespace SmartHomeUWP
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             var position = await LocationManager.GetPosition();
-            
+
             RootObject myWeather =
                 await OpenWeatherMapProxy.GetWeather(
                     position.Coordinate.Latitude,
@@ -41,10 +41,25 @@ namespace SmartHomeUWP
             ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
             ResultTextBlock.Text = myWeather.name + " - " + ((int)myWeather.main.temp).ToString() + " - " + myWeather.weather[0].description;
         }
-        
-        private async void HamburgerButton_Click(object sender, RoutedEventArgs e)
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+        }
+
+        private void Button1_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private async void Button2_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        private async void Button3_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        private async void Button4_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
