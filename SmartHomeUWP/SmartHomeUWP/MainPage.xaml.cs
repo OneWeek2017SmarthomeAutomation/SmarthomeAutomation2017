@@ -42,24 +42,27 @@ namespace SmartHomeUWP
             ResultTextBlock.Text = myWeather.name + " - " + ((int)myWeather.main.temp).ToString() + " - " + myWeather.weather[0].description;
         }
 
+        //BEGIN NAVBAR
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
-
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
-
-        private async void Button2_Click(object sender, RoutedEventArgs e)
+        private void Button2_Click(object sender, RoutedEventArgs e)
         {
+            this.Frame.Navigate(typeof(ProgramsPage));
         }
-        private async void Button3_Click(object sender, RoutedEventArgs e)
+        private void Button3_Click(object sender, RoutedEventArgs e)
         {
+            this.Frame.Navigate(typeof(SetupPage));
         }
-        private async void Button4_Click(object sender, RoutedEventArgs e)
+        private void Button4_Click(object sender, RoutedEventArgs e)
         {
+            this.Frame.Navigate(typeof(YourHomePage));
         }
+        //END NAVBAR
     }
 }
