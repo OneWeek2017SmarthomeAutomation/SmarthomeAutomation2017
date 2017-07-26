@@ -14,9 +14,31 @@
         </Grid.ColumnDefinitions>
 
     </Grid>-->
-    <StackPanel Background="HotPink">
-        <Button Content="Get Weather" Click="Button_Click" />
-        <TextBlock Name="ResultTextBlock" />
-        <Image Name="ResultImage" Width="200" Height="200" />
-    </StackPanel>
+    <SplitView Name="MySplitView" DisplayMode="CompactOverlay"  IsPaneOpen="False"
+               CompactPaneLength="50" OpenPaneLength="150">
+        <SplitView.Pane>
+            <StackPanel Background="Gray">
+                <Button Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+                    Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="Screen1Btn" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;"
+                       Width="50" Height="50" Background="Transparent"/>
+                    <TextBlock Text="Button1" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="Screen2Btn" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;"
+                       Width="50" Height="50" Background="Transparent"/>
+                    <TextBlock Text="Button2" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <StackPanel Background="HotPink">
+                <Button Content="Get Weather" Click="Button_Click" />
+                <TextBlock Name="ResultTextBlock" />
+                <Image Name="ResultImage" Width="200" Height="200" />
+            </StackPanel>
+        </SplitView.Content>
+            
+    </SplitView>
 </Page>
