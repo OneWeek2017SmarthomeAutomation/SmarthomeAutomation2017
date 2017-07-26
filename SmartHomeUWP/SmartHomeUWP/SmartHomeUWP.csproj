@@ -19,9 +19,9 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>SmartHomeUWP_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>C:\Users\andlam\Source\Repos\SmarthomeAutomation2017\SmartHomeUWP\SmartHomeUWP\Assets\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\erhunt\Source\Repos\SmarthomeAutomation2017\SmartHomeUWP\AppPackage\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>89CFFB3AF814DD552089A6633DCB0C01C8EB3160</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
