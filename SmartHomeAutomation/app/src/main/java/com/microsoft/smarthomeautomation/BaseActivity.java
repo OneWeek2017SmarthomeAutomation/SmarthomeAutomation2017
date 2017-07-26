@@ -13,18 +13,16 @@ import android.widget.Toast;
 import com.microsoft.smarthomeautomation.DTO.Actions;
 import com.microsoft.smarthomeautomation.Fragments.ActionsFragment;
 import com.microsoft.smarthomeautomation.Fragments.ProgramListFragment;
-import com.microsoft.smarthomeautomation.Services.NotificationServiceImpl;
 
 
 public class BaseActivity extends AppCompatActivity implements ActionsFragment.OnListFragmentInteractionListener {
-
-    NotificationServiceImpl notificationService;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     replaceFragment(new ActionsFragment());
