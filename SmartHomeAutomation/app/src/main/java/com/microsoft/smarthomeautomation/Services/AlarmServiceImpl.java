@@ -26,7 +26,7 @@ public class AlarmServiceImpl implements AlarmService {
         intent.putExtras(bundle);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         Log.d("AlarmServiceImpl", "Scheduling alarm:" + action + " startTime " + startTime);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, startTime.getMillis(), pendingIntent);
