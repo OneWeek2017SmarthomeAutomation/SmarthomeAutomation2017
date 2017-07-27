@@ -1,8 +1,13 @@
 package com.microsoft.smarthomeautomation.Services;
 
 import android.content.Context;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.microsoft.smarthomeautomation.SmartHomeApplication;
 
 import java.io.IOException;
 
@@ -39,6 +44,14 @@ public class MediaServiceImpl implements MediaService {
     }
 
     @Override
+    public boolean StartMediaPlayer(int songResource) {
+        MediaPlayer player = MediaPlayer.create(context, songResource);
+        this.player = player;
+        player.start();
+        return true;
+    }
+
+    @Override
     public boolean SetMediaVolume(int volume) {
         if (volume < 0 || volume > MAX_VOL) {
             throw new IllegalArgumentException("Volume is out of allowable range");
@@ -48,6 +61,9 @@ public class MediaServiceImpl implements MediaService {
         }
         float vol = (float) (Math.log(MAX_VOL - volume) / Math.log(MAX_VOL));
         this.player.setVolume(vol, vol);
+
+
+        SmartHomeApplication.getInstance().networkService.setLightBrightness(volume);
         return true;
     }
 

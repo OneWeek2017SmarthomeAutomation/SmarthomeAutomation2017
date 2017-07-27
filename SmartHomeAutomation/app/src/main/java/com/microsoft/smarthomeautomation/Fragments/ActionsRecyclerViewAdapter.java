@@ -12,22 +12,26 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.microsoft.smarthomeautomation.DTO.Actions.Action;
+import com.microsoft.smarthomeautomation.DTO.Action;
 import com.microsoft.smarthomeautomation.Fragments.ActionsFragment.OnListFragmentInteractionListener;
 import com.microsoft.smarthomeautomation.R;
 
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Action} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  */
-public class MyActionsRecyclerViewAdapter extends RecyclerView.Adapter<MyActionsRecyclerViewAdapter.ViewHolder> {
+public class ActionsRecyclerViewAdapter extends RecyclerView.Adapter<ActionsRecyclerViewAdapter.ViewHolder> {
 
     private final List<Action> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyActionsRecyclerViewAdapter(List<Action> items, OnListFragmentInteractionListener listener) {
+    public ActionsRecyclerViewAdapter(ArrayList<Action> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -42,10 +46,13 @@ public class MyActionsRecyclerViewAdapter extends RecyclerView.Adapter<MyActions
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Action selectedItem = mValues.get(position);
+        holder.statusCircle.setImageResource(position == 0 ? R.drawable.left_circle_full : R.drawable.left_circle_empty);
         holder.mItem = selectedItem;
         holder.icon.setImageResource(getResourceForType(selectedItem.Type));
         holder.title.setText(selectedItem.ReadableName);
         holder.title.setTypeface(null, Typeface.NORMAL);
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("HH:mm a" );
+        holder.textClock.setText(formatter.print(selectedItem.StartTime));
         holder.enabledSwitch.setChecked(selectedItem.Enabled);
         holder.enabledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -57,7 +64,7 @@ public class MyActionsRecyclerViewAdapter extends RecyclerView.Adapter<MyActions
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyActionsRecyclerViewAdapter.this.notifyDataSetChanged();
+                ActionsRecyclerViewAdapter.this.notifyDataSetChanged();
                 if (holder.containerLayout.getVisibility() == View.GONE) {
                     holder.title.setTypeface(null, Typeface.BOLD);
                     holder.containerLayout.setVisibility(View.VISIBLE);
@@ -75,7 +82,8 @@ public class MyActionsRecyclerViewAdapter extends RecyclerView.Adapter<MyActions
 
     private int getResourceForType(String type) {
         switch(type) {
-            case "WakeUp":
+            case "WakeUpSong":
+            case "WakeUpLights":
                 return R.drawable.ic_wb_sunny_black_24dp;
             case "Commute":
                 return R.drawable.ic_directions_car_black_24dp;
@@ -92,17 +100,21 @@ public class MyActionsRecyclerViewAdapter extends RecyclerView.Adapter<MyActions
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
+        public final ImageView statusCircle;
         public final ImageView icon;
         public final TextView title;
         public final SwitchCompat enabledSwitch;
         public final FrameLayout containerLayout;
+        public final TextView textClock;
         public Action mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
+            statusCircle = (ImageView) view.findViewById(R.id.active_circle);
             icon = (ImageView) view.findViewById(R.id.icon);
             title = (TextView) view.findViewById(R.id.content);
+            textClock = (TextView) view.findViewById(R.id.event_time);
             enabledSwitch = (SwitchCompat) view.findViewById(R.id.enabled_switch);
             containerLayout = (FrameLayout) view.findViewById(R.id.container_layout);
         }

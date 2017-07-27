@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.microsoft.smarthomeautomation.DTO.Actions;
-import com.microsoft.smarthomeautomation.DTO.Actions.Action;
+import com.microsoft.smarthomeautomation.DTO.Action;
 import com.microsoft.smarthomeautomation.R;
+import com.microsoft.smarthomeautomation.SmartHomeApplication;
+
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -21,7 +23,6 @@ import com.microsoft.smarthomeautomation.R;
  */
 public class ActionsFragment extends Fragment {
 
-    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
     /**
@@ -46,15 +47,15 @@ public class ActionsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_actions_list, container, false);
 
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new MyActionsRecyclerViewAdapter(Actions.ACTIONS, mListener));
+            ArrayList<Action> actions = SmartHomeApplication.getInstance().settingsProvider.getLastDownloadedActions();
+            recyclerView.setAdapter(new ActionsRecyclerViewAdapter(actions, mListener));
         }
         return view;
     }
@@ -65,9 +66,6 @@ public class ActionsFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
         }
     }
 

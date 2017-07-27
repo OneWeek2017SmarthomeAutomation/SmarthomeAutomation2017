@@ -1,9 +1,14 @@
 package com.microsoft.smarthomeautomation.Services;
 
-import com.microsoft.smarthomeautomation.DTO.Actions;
+import com.microsoft.smarthomeautomation.DTO.Action;
+
+import java.util.ArrayList;
 
 public interface NetworkService {
 
-    Actions FetchActions();
-    Void PutActions(Actions actions);
+    ArrayList<Action> FetchActions();
+    Void PutActions(ArrayList<Action> actions);
+
+    void setLightBrightness(int brightness);
+
 }
