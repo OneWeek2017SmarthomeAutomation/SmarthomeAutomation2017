@@ -33,8 +33,6 @@ public class BaseActivity extends AppCompatActivity {
                 case R.id.navigation_notifications:
                     replaceFragment(new HomeControlFragment());
                     return true;
-                case R.id.navigation_cortana:
-                    return true;
             }
             return false;
         }

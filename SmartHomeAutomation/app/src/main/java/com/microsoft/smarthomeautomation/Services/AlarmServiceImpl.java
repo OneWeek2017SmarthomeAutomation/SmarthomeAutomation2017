@@ -21,15 +21,15 @@ public class AlarmServiceImpl implements AlarmService {
 
     @Override
     public void setAlarm(DateTime startTime, String action, Bundle bundle) {
-        Intent receiver = new Intent(context, HomeBroadcastReceiver.class);
-        receiver.setAction(action);
-        receiver.putExtras(bundle);
+        Intent intent = new Intent(context, HomeBroadcastReceiver.class);
+        intent.setAction(action);
+        intent.putExtras(bundle);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, receiver, 0);
-        alarmManager.cancel(pendingIntent);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, startTime.getMillis(), pendingIntent);
+        Log.d("AlarmServiceImpl", "Scheduling alarm:" + action + " startTime " + startTime);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, startTime.getMillis(), pendingIntent);
     }
 
     @Override

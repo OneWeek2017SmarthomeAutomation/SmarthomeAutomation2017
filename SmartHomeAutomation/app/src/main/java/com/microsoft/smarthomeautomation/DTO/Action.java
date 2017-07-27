@@ -2,8 +2,10 @@ package com.microsoft.smarthomeautomation.DTO;
 
 import org.joda.time.DateTime;
 
+import java.util.Date;
+
 public class Action {
-    public DateTime StartTime;
+    public Date StartTime;
     public String ReadableName;
     public String Type;
     public Object Value;
@@ -17,6 +19,6 @@ public class Action {
         this.Value = Value;
         this.Acknowledged = Acknowledged;
         this.Enabled = Enabled;
-        this.StartTime = startTime;
+        this.StartTime = startTime.toDate();
     }
 }

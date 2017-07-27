@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.content.WakefulBroadcastReceiver;
+import android.util.Log;
 
 import com.microsoft.smarthomeautomation.Constants;
 import com.microsoft.smarthomeautomation.DTO.Action;
@@ -49,11 +50,20 @@ public class HomeBroadcastReceiver extends WakefulBroadcastReceiver {
         }
 
         String action = intent.getAction();
+        Log.d("HomeBroadcastReceiver", "Action = " + action);
 
         if (action.equalsIgnoreCase(Constants.INTENT_START_MEDIA)) {
             application.mediaService.StartMediaPlayer(R.raw.eye_of_the_tiger);
+            application.notificationService.DisplayNotification("Good morning!", "Your first meeting is at 10:30 AM");
         } else if (action.equalsIgnoreCase(Constants.INTENT_STOP_MEDIA)) {
             application.mediaService.StopMediaPlayer();
+            ArrayList<Action> actions = application.settingsProvider.getLastDownloadedActions();
+            for (Action act : actions) {
+                if (act.Type.equals("WakeUpSong")) {
+                    act.Enabled = false;
+                }
+            }
+            application.settingsProvider.saveLastDownloadedActions(actions);
         } else if (action.equalsIgnoreCase(Constants.INTENT_SET_VOLUME)) {
             int volume = intent.getIntExtra(Constants.EXTRA_VOLUME, 3);
             application.mediaService.SetMediaVolume(volume);
@@ -75,14 +85,13 @@ public class HomeBroadcastReceiver extends WakefulBroadcastReceiver {
         } else if (action.equalsIgnoreCase(Constants.INTENT_NOTIFICATION_DISMISSED)) {
             ArrayList<Action> actions = application.settingsProvider.getLastDownloadedActions();
             for (Action event : actions) {
-                if (event.StartTime.isBefore(DateTime.now().plusMinutes(60))) {
+                if (new DateTime(event.StartTime).isBefore(DateTime.now().plusMinutes(60))) {
                     event.Enabled = false;
                 }
             }
             application.alarmService.cancelAlarms();
             application.mediaService.StopMediaPlayer();
             application.networkService.PutActions(actions);
-            // TODO dismiss the notifications
         }
     }
 }

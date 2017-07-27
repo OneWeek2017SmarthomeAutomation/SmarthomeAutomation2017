@@ -15,12 +15,13 @@ import android.widget.TextView;
 import com.microsoft.smarthomeautomation.DTO.Action;
 import com.microsoft.smarthomeautomation.Fragments.ActionsFragment.OnListFragmentInteractionListener;
 import com.microsoft.smarthomeautomation.R;
+import com.microsoft.smarthomeautomation.SmartHomeApplication;
 
+import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Action} and makes a call to the
@@ -28,7 +29,7 @@ import java.util.List;
  */
 public class ActionsRecyclerViewAdapter extends RecyclerView.Adapter<ActionsRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Action> mValues;
+    private final ArrayList<Action> mValues;
     private final OnListFragmentInteractionListener mListener;
 
     public ActionsRecyclerViewAdapter(ArrayList<Action> items, OnListFragmentInteractionListener listener) {
@@ -51,13 +52,14 @@ public class ActionsRecyclerViewAdapter extends RecyclerView.Adapter<ActionsRecy
         holder.icon.setImageResource(getResourceForType(selectedItem.Type));
         holder.title.setText(selectedItem.ReadableName);
         holder.title.setTypeface(null, Typeface.NORMAL);
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("HH:mm a" );
-        holder.textClock.setText(formatter.print(selectedItem.StartTime));
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("h:mm a" );
+        holder.textClock.setText(formatter.print(new DateTime(selectedItem.StartTime)));
         holder.enabledSwitch.setChecked(selectedItem.Enabled);
         holder.enabledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 selectedItem.Enabled = isChecked;
+                SmartHomeApplication.getInstance().settingsProvider.saveLastDownloadedActions(mValues);
             }
         });
 

@@ -88,15 +88,17 @@ public class SettingsProvider {
     }
 
     public ArrayList<Action> getSampleDataImmediately() {
-        DateTime startTime = DateTime.now().plusMinutes(6);
+        DateTime startTime = DateTime.now().plusMinutes(2);
         ArrayList<Action> actions = new ArrayList<>();
         actions.add(new Action("Play Wakeup Song", "WakeUpSong", "", startTime, true, true));
+        actions.add(new Action("Make Home Comfortable", "Home", "", startTime.plusMinutes(1), true, true));
         actions.add(new Action("Turn lights up", "WakeUpLights", "", startTime.plusMinutes(5), true, true));
-        actions.add(new Action("Make Home Comfortable", "Home", "", startTime.plusMinutes(30), true, true));
         actions.add(new Action("Ordering Commute", "Commute", "", startTime.plusHours(1).plusMinutes(30), true, true));
-        actions.add(new Action("Home Standby Sequence", "Home", "", startTime.plusHours(2).plusMinutes(30), true, true));
+        actions.add(new Action("Home Unoccupied Sequence", "Home", "", startTime.plusHours(2), true, true));
         actions.add(new Action("Ordering Commute Home", "Commute", "", startTime.plusHours(10).plusMinutes(30), true, true));
+        actions.add(new Action("Turn lights up", "WakeUpLights", "", startTime.plusHours(11), true, true));
         actions.add(new Action("Make Home Comfortable", "Home", "", startTime.plusHours(11), true, true));
+        actions.add(new Action("Bedtime Notification", "Home", "", startTime.plusHours(14), true, true));
         actions.add(new Action("Home Standby Sequence", "Home", "", startTime.plusHours(15), true, true));
         return actions;
     }
@@ -106,12 +108,14 @@ public class SettingsProvider {
         DateTime startTime = new DateTime().withTimeAtStartOfDay().plusDays(1).plusHours(7);
         ArrayList<Action> actions = new ArrayList<>();
         actions.add(new Action("Play Wakeup Song", "WakeUpSong", "", startTime, true, true));
+        actions.add(new Action("Make Home Comfortable", "Home", "", startTime.plusMinutes(1), true, true));
         actions.add(new Action("Turn lights up", "WakeUpLights", "", startTime.plusMinutes(5), true, true));
-        actions.add(new Action("Make Home Comfortable", "Home", "", startTime.plusMinutes(30), true, true));
         actions.add(new Action("Ordering Commute", "Commute", "", startTime.plusHours(1).plusMinutes(30), true, true));
-        actions.add(new Action("Home Standby Sequence", "Home", "", startTime.plusHours(2).plusMinutes(30), true, true));
+        actions.add(new Action("Home Unoccupied Sequence", "Home", "", startTime.plusHours(2), true, true));
         actions.add(new Action("Ordering Commute Home", "Commute", "", startTime.plusHours(10).plusMinutes(30), true, true));
+        actions.add(new Action("Turn lights up", "WakeUpLights", "", startTime.plusHours(11), true, true));
         actions.add(new Action("Make Home Comfortable", "Home", "", startTime.plusHours(11), true, true));
+        actions.add(new Action("Bedtime Notification", "Home", "", startTime.plusHours(14), true, true));
         actions.add(new Action("Home Standby Sequence", "Home", "", startTime.plusHours(15), true, true));
         return actions;
     }
@@ -120,13 +124,15 @@ public class SettingsProvider {
         DateTime startTime = new DateTime().withTimeAtStartOfDay().plusDays(1).plusHours(7).minusMinutes(18);
         ArrayList<Action> actions = new ArrayList<>();
         actions.add(new Action("Play Wakeup Song", "WakeUpSong", "", startTime, true, true));
+        actions.add(new Action("Make Home Comfortable", "Home", "", startTime.plusMinutes(1), true, true));
         actions.add(new Action("Turn lights up", "WakeUpLights", "", startTime.plusMinutes(5), true, true));
-        actions.add(new Action("Make Home Comfortable", "Home", "", startTime.plusMinutes(30), true, true));
         actions.add(new Action("Ordering car early due to traffic", "Commute", "", startTime.plusHours(1).plusMinutes(30), true, true));
-        actions.add(new Action("Home Standby Sequence", "Home", "", startTime.plusHours(2).plusMinutes(30), true, true));
-        actions.add(new Action("Ordering Commute Home", "Commute", "", startTime.plusHours(10).plusMinutes(30).plusMinutes(18), true, true));
-        actions.add(new Action("Make Home Comfortable", "Home", "", startTime.plusHours(11).plusMinutes(18), true, true));
-        actions.add(new Action("Home Standby Sequence", "Home", "", startTime.plusHours(15).plusMinutes(18), true, true));
+        actions.add(new Action("Home Unoccupied Sequence", "Home", "", startTime.plusHours(2), true, true));
+        actions.add(new Action("Ordering Commute Home", "Commute", "", startTime.plusHours(10).plusMinutes(30), true, true));
+        actions.add(new Action("Turn lights up", "WakeUpLights", "", startTime.plusHours(11), true, true));
+        actions.add(new Action("Make Home Comfortable", "Home", "", startTime.plusHours(11), true, true));
+        actions.add(new Action("Bedtime Notification", "Home", "", startTime.plusHours(14), true, true));
+        actions.add(new Action("Home Standby Sequence", "Home", "", startTime.plusHours(15), true, true));
         return actions;
     }
 }
